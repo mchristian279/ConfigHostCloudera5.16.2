@@ -1,0 +1,42 @@
+---
+    - hosts: clustercloudera
+      tasks:
+        - name: Seta SELinux para permissivo
+          selinux:
+            policy: targeted
+            state: permissive
+        - name: Desabilita SELinux
+          selinux:
+            state: disabled
+        - name: Confgura Regras de Firewall
+          firewalld:
+                permanent: yes
+                state: enabled
+                port: '{{ item }}'
+          loop:
+               - 7180/tcp
+               - 7181/tcp
+               - 7182/tcp
+               - 9000/tcp
+               - 9001/tcp
+               - 9002/tcp
+               - 7432/tcp
+               - 9083/tcp
+               - 9082/tcp
+               - 9093/tcp
+        - name: Instala Pacotes
+          yum:
+            name: '{{ item }}'
+          loop:
+                - wget
+                - curl
+                - vim
+                - net-tools
+                - bash-completion
+        - name: Adiciona Repositorio Cloudera
+          shell:
+            cmd: wget https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo -P /etc/yum.repos.d/
+            warn: false
+        - name: Reboot Servidores Para setar Configuração SELinux
+          reboot:
+            test_command: whoami
