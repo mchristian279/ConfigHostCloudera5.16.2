@@ -88,7 +88,9 @@ resultado após provisionar:
 
 ![](imgs_repo/terraform-result.png)
 
-OBS:foi cadastrado previamente no arquivo /etc/hosts da estação de trabalho que dispara os scripts de provisiomaneto do ambiente os ips e nomes dos hosts:
+> OBS:foi cadastrado previamente no arquivo /etc/hosts da estação de trabalho que dispara os scripts de provisiomaneto do ambiente os ips e nomes dos hosts:
+</br>
+
 192.168.10.10 cloudera0
 192.168.10.11 cloudera1
 192.168.10.12 cloudera2
