@@ -93,10 +93,8 @@ resultado após provisionar:
 
 > 192.168.10.10 cloudera0
 </br>
-
 > 192.168.10.11 cloudera1
 </br>
-
 >192.168.10.12 cloudera2
 
 ### Aplicar Configurações Ansinble:
