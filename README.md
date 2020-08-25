@@ -12,7 +12,7 @@ Provisionamento de 3 hosts em ambiente KVM via terraform e ansible-playbook para
 - KVM libvirt
 - golang v1.13
 - Terraform v0.12
-- Terraforme plugin terraform-provider-libvirt
+- Terraform plugin terraform-provider-libvirt
 
 ### Terraform:
 - machine.tf
