@@ -86,6 +86,8 @@ provisionar ambiente:
 
 resultado após provisionar:
 
+![](imgs_repo/terraform-result.png)
+
 ### Aplicar Configurações Ansinble:
 
 Aplicar ansible-playbook:
@@ -93,4 +95,19 @@ Aplicar ansible-playbook:
 `$ ansible-playbook -i inventory.hosts playbook.yml -u root -k`
 
 resultado após aplicar o ansible-playbook:
+
+![](imgs_repo/ansible-playbook-p1.png)
+![](imgs_repo/ansible-playbook-p2.png)
+
+### KVM:
+
+Resultado do provisionamento KVM
+
+rede provisionada:
+
+![](imgs_repo/kvm-network.png)
+
+vms provisionadas:
+
+![](imgs_repo/kvm-result.png)
 
