@@ -1,6 +1,6 @@
 # Provisionar e Configurar Ambiente Cloudera5.16.2
 
-Provisiomaneto de 3 hosts em ambiente KVM via terraform e ansible-playbook para configuração dos hosts Cloudera 5.16.2.
+Provisionamento de 3 hosts em ambiente KVM via terraform e ansible-playbook para configuração dos hosts Cloudera 5.16.2.
 
 ### Tecnologias Utilizadas:
 - Terraform
