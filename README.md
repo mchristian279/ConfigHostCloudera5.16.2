@@ -1,9 +1,9 @@
 # Provisionar e Configurar Ambiente Cloudera5.16.2
 
-Provisiomaneto de 3 hosts em ambiente KVM - libvirt via terraform e ansible-playbook para configuração dos hosts Cloudera 5.16.2.
+Provisiomaneto de 3 hosts em ambiente KVM via terraform e ansible-playbook para configuração dos hosts Cloudera 5.16.2.
 
 ### Tecnologias Utilizadas:
-- Terrafom
+- Terraform
 - Ansible
 - Linux
 - KVM
@@ -27,13 +27,13 @@ Provisiomaneto de 3 hosts em ambiente KVM - libvirt via terraform e ansible-play
 
 *variables.tf* este arquivo de variáveis permitirá realizar as personalizações necessárias para adaptação para outras necessidades. Abaixo uma pequena explicação:
 
-Variável responsável por definir o número de Vms a ser provisionadas:
+Variável responsável por definir o número de vms a serem provisionadas:
 ```terraform
 variable "instance_count" {
   default = "3"
 }
 ```
-Variável responsável por definir a imagem(qcowc2) base do S.O formado:
+Variável responsável por definir a imagem base do S.O (qcow2):
 ```terraform
 variable "disk_img" {
   default = "file:///Dados/Vms/centos7.0"
@@ -46,7 +46,7 @@ variable "vm_network_addresses" {
   default     = "192.168.10.0/24"
 }
 ```
-Variável responsável por definir o ip estático das Vms (OBS:existem 3 ips pois a variavel instance_count foi definida como valor 3):
+Variável responsável por definir o ip estático das vms (OBS: existem 3 ips pois, a variável instance_count foi definida com o valor 3):
 ```terraform
 variable "vm_addresses" {
   default = {
@@ -64,7 +64,7 @@ variable "vm_network_name" {
   default     = "clustercloudera"
 }
 ```
-Variável responsável por definir domínio dos hosts:
+Variável responsável por definir o domínio dos hosts:
 ```terraform
 variable "domain_name" {
   default = "lab.local"
@@ -72,7 +72,7 @@ variable "domain_name" {
 ```
 ### Provisionar Vms Terraform:
 
-validar a estrutura dos arquivos do terraform:
+validar a estrutura dos arquivos terraform:
 </br>
 `$ terraform validate`
 
@@ -96,9 +96,9 @@ resultado após provisionar:
 <br>
 > 192.168.10.12 cloudera2
 
-### Aplicar Configurações Ansinble:
+### Aplicar Configurações Ansible:
 
-Aplicar ansible-playbook:
+aplicar ansible-playbook:
 </br>
 `$ ansible-playbook -i inventory.hosts playbook.yml -u root -k`
 
@@ -109,7 +109,7 @@ resultado após aplicar o ansible-playbook:
 
 ### KVM:
 
-Resultado do provisionamento KVM
+Resultado do provisionamento dos hosts KVM
 
 rede provisionada:
 
