@@ -1,4 +1,4 @@
-# Script Proviona Ambiente Cluster Cloudera com 3 VMs
+# Script Provisiona Ambiente Cluster Cloudera com 3 VMs
 # Autor: Michael Christian
 # github: mchristian279
 

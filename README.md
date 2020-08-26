@@ -71,12 +71,6 @@ variable "domain_name" {
   default = "lab.local"
 }
 ```
-Variável retornar o id da execução do ansible playbook e a key trigger:
-```terraform
-output "ansible" {
-  value = null_resource.ansible
-}
-```
 
 ### Provisionar Vms Terraform:
 
