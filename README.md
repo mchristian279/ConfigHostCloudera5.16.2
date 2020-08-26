@@ -111,3 +111,9 @@ vms provisionadas:
 
 ![](imgs_repo/kvm-result.png)
 
+### Cloudera Manager
+
+Resultado esperado:
+
+![](imgs_repo/clouderaManagerBin.png)
+![](imgs_repo/clouderaMangerExec.png)
