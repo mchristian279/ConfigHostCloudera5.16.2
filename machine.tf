@@ -59,3 +59,14 @@ resource "libvirt_domain" "domain" {
   }
   count = var.instance_count
 }
+
+#Ansible
+resource "null_resource" "ansible" {
+  triggers = {
+    key = "${uuid()}"
+  }
+  depends_on = [libvirt_domain.domain]
+  provisioner "local-exec" {
+    command = "ansible-playbook -i inventory.hosts -u root playbook.yml --private-key=./key/id_rsa.pem -u root"
+  }
+}

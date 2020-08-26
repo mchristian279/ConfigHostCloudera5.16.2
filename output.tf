@@ -13,3 +13,7 @@ output "Rede" {
 output "IP" {
   value = libvirt_domain.domain.*.network_interface.0.addresses
 }
+
+output "ansible" {
+  value = null_resource.ansible
+}

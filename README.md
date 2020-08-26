@@ -70,6 +70,13 @@ variable "domain_name" {
   default = "lab.local"
 }
 ```
+Variável retornar o id da execução do ansible playbook e a key trigger:
+```terraform
+output "ansible" {
+  value = null_resource.ansible
+}
+```
+
 ### Provisionar Vms Terraform:
 
 validar a estrutura dos arquivos terraform:
@@ -86,7 +93,7 @@ provisionar ambiente:
 
 resultado após provisionar:
 
-![](imgs_repo/terraform-result.png)
+![](imgs_repo/deployTerraformResult.png)
 
 > OBS:foi cadastrado previamente no arquivo /etc/hosts da estação de trabalho que dispara os scripts de provisiomaneto do ambiente os ips e nomes dos hosts:
 </br>
@@ -96,17 +103,6 @@ resultado após provisionar:
 192.168.10.11 cloudera1
 </br>
 192.168.10.12 cloudera2
-
-### Aplicar Configurações Ansible:
-
-aplicar ansible-playbook:
-</br>
-`$ ansible-playbook -i inventory.hosts playbook.yml -u root -k`
-
-resultado após aplicar o ansible-playbook:
-
-![](imgs_repo/ansible-playbook-p1.png)
-![](imgs_repo/ansible-playbook-p2.png)
 
 ### KVM:
 
