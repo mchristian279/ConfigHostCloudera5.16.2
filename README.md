@@ -104,8 +104,6 @@ resultado esperado:
 </br>
 192.168.10.12 cloudera2
 
-<<<<<<< HEAD
-=======
 ### Aplicar Configurações Ansible:
 
 aplicar ansible-playbook:
@@ -117,7 +115,6 @@ resultado esperado após aplicar o ansible-playbook:
 ![](imgs_repo/ansible-playbook-p1.png)
 ![](imgs_repo/ansible-playbook-p2.png)
 
->>>>>>> 624283a1c4f0f6c97d4c344df4536c54ecc0afcc
 ### KVM:
 
 Resultado do provisionamento dos hosts KVM
