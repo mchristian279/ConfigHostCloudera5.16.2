@@ -37,6 +37,14 @@
           shell:
             cmd: wget https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo -P /etc/yum.repos.d/
             warn: false
+        - name: Adiciona binario Cloudera Manager
+          copy:
+            src: ./cloudera5.16.2_bin/cloudera-manager-installer.bin
+            dest: /opt/
+            owner: root
+            group: root
+            mode: '0775'
         - name: Reboot Servidores Para setar Configuração SELinux
           reboot:
             test_command: whoami
+            
