@@ -12,7 +12,7 @@ Provisionamento de 3 hosts em ambiente KVM via terraform e ansible-playbook para
 - KVM libvirt
 - golang v1.13
 - Terraform v0.12
-- Terraforme plugin terraform-provider-libvirt
+- Plugin terraform-provider-libvirt
 
 ### Terraform:
 - machine.tf
@@ -25,7 +25,7 @@ Provisionamento de 3 hosts em ambiente KVM via terraform e ansible-playbook para
 
 ### Como Utilizar:
 
-*variables.tf* este arquivo de variáveis permitirá realizar as personalizações necessárias para adaptação para outras necessidades. Abaixo uma pequena explicação:
+*variables.tf* este arquivo de variáveis permitirá realizar as personalizações necessárias para adaptação de outras necessidades. Abaixo uma breve explicação:
 
 Variável responsável por definir o número de vms a serem provisionadas:
 ```terraform
@@ -91,7 +91,7 @@ provisionar ambiente:
 </br>
 `$ terraform apply -auto-approve`
 
-resultado após provisionar:
+resultado esperado:
 
 ![](imgs_repo/deployTerraformResult.png)
 
@@ -104,6 +104,20 @@ resultado após provisionar:
 </br>
 192.168.10.12 cloudera2
 
+<<<<<<< HEAD
+=======
+### Aplicar Configurações Ansible:
+
+aplicar ansible-playbook:
+</br>
+`$ ansible-playbook -i inventory.hosts playbook.yml -u root -k`
+
+resultado esperado após aplicar o ansible-playbook:
+
+![](imgs_repo/ansible-playbook-p1.png)
+![](imgs_repo/ansible-playbook-p2.png)
+
+>>>>>>> 624283a1c4f0f6c97d4c344df4536c54ecc0afcc
 ### KVM:
 
 Resultado do provisionamento dos hosts KVM
