@@ -44,6 +44,13 @@
             owner: root
             group: root
             mode: '0775'
+        - name: Adiciona Configuração /etc/hosts
+          copy:
+            src: ./hosts/hosts
+            dest: /etc/hosts
+            owner: root
+            group: root
+            mode: '0644'
         - name: Reboot Servidores Para setar Configuração SELinux
           reboot:
             test_command: whoami
