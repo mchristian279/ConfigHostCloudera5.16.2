@@ -14,6 +14,8 @@ Provisionamento de 3 hosts em ambiente KVM via terraform e ansible-playbook para
 - Terraform v0.12
 - Plugin terraform-provider-libvirt
 - Ansible
+- Python
+- Psycopg2
 
 ### Terraform:
 - machine.tf

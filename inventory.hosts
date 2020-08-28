@@ -2,3 +2,9 @@
 cloudera0
 cloudera1
 cloudera2
+
+[clouderadb]
+cloudera2
+
+[clouderacm]
+cloudera0

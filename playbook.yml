@@ -24,26 +24,23 @@
                - 9083/tcp
                - 9082/tcp
                - 9093/tcp
+               - 2181/tcp
+               - 8020/tcp
         - name: Instala Pacotes
           yum:
+            state: present
             name: '{{ item }}'
           loop:
                 - wget
                 - curl
                 - vim
+                - telnet
                 - net-tools
                 - bash-completion
         - name: Adiciona Repositorio Cloudera
           shell:
             cmd: wget https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo -P /etc/yum.repos.d/
             warn: false
-        - name: Adiciona binario Cloudera Manager
-          copy:
-            src: ./cloudera5.16.2_bin/cloudera-manager-installer.bin
-            dest: /opt/
-            owner: root
-            group: root
-            mode: '0775'
         - name: Adiciona Configuração /etc/hosts
           copy:
             src: ./hosts/hosts
@@ -53,5 +50,85 @@
             mode: '0644'
         - name: Reboot Servidores Para setar Configuração SELinux
           reboot:
-            test_command: whoami
-            
+            test_command: whoami      
+    - hosts: clouderacm
+      tasks:
+        - name: Adiciona binario Cloudera Manager
+          copy:
+            src: ./cloudera5.16.2_bin/cloudera-manager-installer.bin
+            dest: /opt/
+            owner: root
+            group: root
+            mode: '0775'
+    - hosts: clouderadb
+      tasks:
+        - name: Instala PostgreSQL e psycopg2
+          yum:
+            state: present
+            name: '{{ item }}'
+          loop:
+            - postgresql-server
+            - python-psycopg2
+        - name: Configura initdb PostgreSQL
+          shell:
+            cmd: postgresql-setup initdb
+            warn: false
+        - name: Configura PostgreSQL locale.conf
+          copy:
+            src: ./postgresql_config/locale.conf
+            dest: /etc/locale.conf
+            owner: root
+            group: root
+            mode: '0644'
+        - name: Configura PostgreSQL postgresql.conf
+          copy:
+            src: ./postgresql_config/postgresql.conf
+            dest: /var/lib/pgsql/data/
+            owner: postgres
+            group: postgres
+            mode: '0600'
+        - name: Configura PostgreSQL pg_hba.conf
+          copy:
+            src: ./postgresql_config/pg_hba.conf
+            dest: /var/lib/pgsql/data/
+            owner: postgres
+            group: postgres
+            mode: '0600'
+        - name: Inicia Serviço PostgreSQL
+          systemd:
+            name: postgresql
+            state: restarted
+            enabled: yes
+        - name: Cria Usuario hive
+          postgresql_user:
+            name: hive
+            password: hive123
+        - name: Cria Database metastore hive
+          postgresql_db:
+            name: metastore
+            owner: hive
+            encoding: UTF-8
+        - name: Cria Usuario hue
+          postgresql_user:
+            name: hue
+            password: hue123
+        - name: Cria Database hue
+          postgresql_db:
+            name: hue
+            owner: hue
+            lc_collate: en_US.UTF-8
+            template: template0
+        - name: Cria Usuario oozie
+          postgresql_user:
+            name: oozie
+            password: oozie123
+            role_attr_flags: NOSUPERUSER,INHERIT,CREATEDB,NOCREATEROLE
+        - name: Cria Database oozie
+          postgresql_db:
+            name: oozie
+            encoding: UTF-8
+            tablespace: pg_default
+            lc_collate: en_US.UTF-8
+            lc_ctype: en_US.UTF-8
+            template: template0
+            conn_limit: "-1"
