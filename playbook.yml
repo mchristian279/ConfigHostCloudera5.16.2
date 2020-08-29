@@ -100,6 +100,24 @@
             name: postgresql
             state: restarted
             enabled: yes
+        - name: Cria Usuario Cloudera Manager
+          postgresql_user:
+            name: scm
+            password: scm123
+        - name: Cria Database Cloudera Manager
+          postgresql_db:
+            name: scm
+            owner: scm
+            encoding: UTF-8
+        - name: Cria Usuario Activity Monitor
+          postgresql_user:
+            name: actmonitor
+            password: actmonitor123
+        - name: Cria Database Activity Monitor
+          postgresql_db:
+            name: actmonitor
+            owner: actmonitor
+            encoding: UTF-8
         - name: Cria Usuario hive
           postgresql_user:
             name: hive
