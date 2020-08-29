@@ -26,6 +26,7 @@
                - 9093/tcp
                - 2181/tcp
                - 8020/tcp
+               - 5432/tcp
         - name: Instala Pacotes
           yum:
             state: present
